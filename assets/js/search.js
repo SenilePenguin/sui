@@ -21,29 +21,30 @@ function handleKeyPress(e) {
     if (key == 13) { // Search functions
         search(text);
     }
-    if (key == 9) { // Tab Completion Functions
-        e.preventDefault();
-        e.stopPropagation();
-        if (text[0] === ';') {
-            switch (option) {
-                case 't':
-                    var streamers = ['admiralbahroo', 'moonmoon_ow', 'witwix'];
-                    if (!subtext || cycle) {
-                        cycle = true;
-                        if (sindex > streamers.length - 1) sindex = 0;
-                        document.getElementById("keywords").value = ';t ' + streamers[sindex++];
-                        return;
-                    }
-                    for (var streamer of streamers) {
-                        if (subtext === streamer.substr(0, subtext.length)) {
-                            document.getElementById("keywords").value = ';t ' + streamer;
-                            return;
-                        }
-                    }
-                    break;
-            }
-        }
-    }
+    //if (key == 9) { // Tab Completion Functions
+    //    e.preventDefault();
+    //    e.stopPropagation();
+    //    // Uses ;t <TAB> to cycle the streamers below. Keep code for legacy, might reuse later.
+    //    if (text[0] === ';') {
+    //        switch (option) {
+    //            case 't':
+    //                var streamers = ['admiralbahroo', 'moonmoon_ow', 'witwix'];
+    //                if (!subtext || cycle) {
+    //                    cycle = true;
+    //                    if (sindex > streamers.length - 1) sindex = 0;
+    //                    document.getElementById("keywords").value = ';t ' + streamers[sindex++];
+    //                    return;
+    //                }
+    //                for (var streamer of streamers) {
+    //                    if (subtext === streamer.substr(0, subtext.length)) {
+    //                        document.getElementById("keywords").value = ';t ' + streamer;
+    //                        return;
+    //                    }
+    //                }
+    //                break;
+    //        }
+    //    }
+    //}
     if(key == 32){ //Space to go to search
         document.getElementById("keywords").focus();
     }
@@ -57,6 +58,7 @@ function search(text) {
     if (text[0] === '/') {
         if (text.indexOf(' ') > -1) {
             switch (option) {
+                // TODO: Extract to a json file?
                 case "am":
                     window.location = "https://www.allmusic.com/search/all/" + subtext;
                     break;

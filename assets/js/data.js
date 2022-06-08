@@ -10,6 +10,7 @@ function fetchAndRender (name) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    fetchAndRender('themes');
     fetchAndRender('apps');
     fetchAndRender('links');
     fetchAndRender('providers');

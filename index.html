@@ -6,13 +6,13 @@
     <meta name="description" content="a startpage for your server and / or new tab page">
     <meta http-equiv="Default-Style" content="">
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <link type="text/css" rel="stylesheet" href="./assets/css/styles.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/styles.css" media="screen,projection" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 </head>
 
-<body onload="loadFunctions()">
+<body>
 
     <section id="modal">
         <div>
@@ -26,17 +26,16 @@
             <h2>Color themes</h2>
 
             <div id="modal-theme">
-                <button data-theme="blackboard" class="theme-button theme-blackboard">Blackboard</button>
-                <button data-theme="gazette" class="theme-button theme-gazette">Gazette</button>
-                <button data-theme="espresso" class="theme-button theme-espresso">Espresso</button>
-                <button data-theme="cab" class="theme-button theme-cab">Cab</button>
-                <button data-theme="cloud" class="theme-button theme-cloud">Cloud</button>
-                <button data-theme="lime" class="theme-button theme-lime">Lime</button>
-                <button data-theme="passion" class="theme-button theme-passion">Passion</button>
-                <button data-theme="blues" class="theme-button theme-blues">Blues</button>
-                <button data-theme="chalk" class="theme-button theme-chalk">Chalk</button>
-                <button data-theme="tron" class="theme-button theme-tron">Tron</button>
-                <button data-theme="paper" class="theme-button theme-paper">Paper</button>
+                <section id="themes">
+                    <script type="text/handlebars-template" id="themes-template">
+                    <div id="themes_loop">
+                        {{#themes}}
+                            <button data-theme="{{name}}" class="theme-button">{{name}}</button>
+                        {{/themes}}
+                    </div>
+
+                    </script>
+                </section>
             </div>
 
             <h2>Search options</h2>
@@ -59,7 +58,7 @@
             </section>
 
             <header id="modal-footer">
-                <a href="https://github.com/jeroenpardon/"><span class="iconify" data-icon="mdi-github-box"></span></a>
+                <a href="https://github.com/SenilePenguin/sui"><span class="iconify" data-icon="mdi-github-box"></span></a>
                 <a href="https://materialdesignicons.com/"><span class="iconify" data-icon="mdi-material-design"></span></a>
             </header>
         </div>
@@ -68,7 +67,7 @@
     <main id="container" class="fade">
 
         <section id="search">
-            <input name="keywords" type="text" id="keywords" size="50" spellcheck="false" autofocus="true" onkeydown="handleKeyPress(event)">
+            <input name="keywords" type="text" id="keywords" size="50" spellcheck="false" autofocus onkeydown="handleKeyPress(event)" placeholder="Search the web...">
         </section>
 
         <section id="header">
@@ -76,40 +75,183 @@
             <h1 id="header_greet"></h1>
         </section>
 
-        <section id="apps">
-            <script type="text/handlebars-template" id="apps-template">
-            <h3>Applications</h3>
-            <div id="apps_loop">
-                {{#apps}}
-                    <div class="apps_item">
-                        <div class="apps_icon">
-                            <span class="iconify icon" data-icon="mdi-{{icon}}"></span>
-                        </div>
-                        <div class="apps_text">
-                            <a href="http://{{url}}" {{#if target}}target="{{target}}"{{/if}} >{{name}}</a>
-                            <span id="app-address">{{url}}</span>
-                        </div>
-                    </div>
-                {{/apps}}
-            </div>
-            </script>
-        </section>
+        <div class="tab">
+            <button class="tablinks" onclick="switchTab(event, 'TabApplications')">Applications</button>
+            <button class="tablinks" onclick="switchTab(event, 'TabLinks')">Bookmarks</button>
+            <button class="tablinks" onclick="switchTab(event, 'TabWeather')" id="defaultTab">Weather</button>
+        </div>
 
-         <section id="links">
-            <script type="text/handlebars-template" id="links-template">
-            <h3>Bookmarks</h3>
-            <div id="links_loop">
-                {{#bookmarks}}
-                    <div id="links_item">
-                        <h4>{{category}}</h4>
-                        {{#links}}
-                            <a href="{{url}}" target="{{target}}" class="theme_color-border theme_text-select">{{name}}</a>
-                        {{/links}}
+        <!-- Tab content -->
+        <div id="TabApplications" class="tabcontent">
+            <section id="apps">
+                <script type="text/handlebars-template" id="apps-template">
+                    <div id="apps_loop">
+                        {{#apps}}
+                            <div class="apps_item">
+                                <div class="apps_icon">
+                                    <span class="iconify icon" data-icon="mdi-{{icon}}"></span>
+                                </div>
+                                <div class="apps_text">
+                                    <a href={{#if protocol}}{{protocol}}{{else}}http{{/if}}://{{url}} {{#if target}}target="{{target}}"{{/if}}>{{name}}</a>
+                                    <span id="app-address">{{url}}</span>
+                                </div>
+                            </div>
+                        {{/apps}}
                     </div>
-                {{/bookmarks}}
-            </div>
+                </script>
+            </section>
+        </div>
+
+        <div id="TabLinks" class="tabcontent">
+            <section id="links">
+                <script type="text/handlebars-template" id="links-template">
+                    <h3>Bookmarks</h3>
+                    <div id="links_loop">
+                        {{#bookmarks}}
+                            <div id="links_item">
+                                <h4>{{category}}</h4>
+                                {{#links}}
+                                    <a href="{{url}}" target="{{target}}" class="theme_color-border theme_text-select">{{name}}</a>
+                                {{/links}}
+                            </div>
+                        {{/bookmarks}}
+                    </div>
+                </script>
+            </section>
+        </div>
+
+        <div id="TabWeather" class="tabcontent">
+            <a class="weatherwidget-io" href="https://forecast7.com/en/31d21n82d35/waycross/?unit=us" data-label_1="WAYCROSS" data-font="Play" data-icons="Climacons Animated" data-theme="original">TEST2</a>
+            <script>
+                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
             </script>
-        </section>
+
+
+
+
+            <div id="weatherRow10" class="flex weather">
+                <div class="weatherToday">
+                    <div>
+                        <div id="locationName">WAYCROSS</div>
+                        <div class="conditions flex">
+                            <div id="degreesHigh">93°F</div>
+                            <div id="degreesLow">72°F</div>
+                        </div>
+                    </div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/37.svg">
+                    <div class="conditionsNow">
+                        <div id="degrees">91°F</div>
+                        <div id="description">overcast clouds</div>
+                    </div>
+                </div>
+                <!--TODO: Dynamically generate these. Also need to research server-side caching of the API calls and querying on that end. --> 
+                <div class="weatherOther">
+                    <div id="locationName">Wednesday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+                <div class="weatherOther">
+                    <div id="locationName">Thursday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+                <div class="weatherOther">
+                    <div id="locationName">Friday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+                <div class="weatherOther">
+                    <div id="locationName">Wednesday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+                <div class="weatherOther">
+                    <div id="locationName">Wednesday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+                <div class="weatherOther">
+                    <div id="locationName">Wednesday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+                <div class="weatherOther">
+                    <div id="locationName">Wednesday</div>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="conditions flex">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
+                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div id="weatherRow0" class="grid-weather">
+                <div class="currentWeather">
+                    <h3 id="locationName">WAYCROSS</h3>
+                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/37.svg">
+                    <div class="currentConditions">
+                        <div id="currentTemp">91°F</div>
+                        <div id="currentDesc">broken clouds</div>
+                    </div>
+                </div>
+                <div>
+                    "AA"
+                </div>
+                <div>
+                    BBB
+                </div>
+            </div>
+
+
+
+
+
+            <div id="weatherRow1" class="grid-forecast">
+                <div id="weatherPanel">
+                    <h3 id="day">Someday</h3>
+                    <div>
+                        <img id="icon" alt="icon" src="//www.wunderground.com/static/i/c/v4/44.svg">
+                    </div>
+                    <div>
+                        <div id="precip">
+                            <span id="precipType">Rain</span><span>:</span>
+                            <span id="precipChance">#</span><span>% chance</span>
+                            <span>(</span><span id="qpf">#.##</span>
+                            <span id="precipUnit">in)</span>
+                        </div>
+                        <div>
+                            <div id="narrative">Description. Lots of something at winds of fast.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
     </main>
 
     <div id="modal_init">
@@ -122,6 +264,17 @@
     <script src="./assets/js/script.js" type="text/javascript"></script>
     <script src="./assets/js/themer.js" type="text/javascript"></script>
     <script src="./assets/js/search.js" type="text/javascript"></script>
+    <script src="./assets/js/tabs.js" type="text/javascript"></script>
+    <script src="./assets/js/weather.js" type="text/javascript"></script>
+
+    <script>
+        window.onload = function () {
+            loadFunctions();
+            loadTheme();
+        }
+
+        document.getElementById("defaultTab").click();
+    </script>
 
 </body>
 </html>
