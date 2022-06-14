@@ -1,82 +1,96 @@
 {
   "themes": [
     {
-      "name": "Blackboard",
-      "background": "#1a1a1a",
-      "primary": "#FFFDEA",
-      "accent": "#5c5c5c"
+      "themeName": "Blackboard",
+      "colorBackground": "#1a1a1a",
+      "colorPrimary": "#FFFDEA",
+      "colorAccent": "#5c5c5c",
+      "colorWeatherTempMax": "darksalmon",
+      "colorWeatherTempMin": "aqua"
     },
     {
-      "name": "Gazette",
-      "background": "#F2F7FF",
-      "primary": "#000000",
-      "accent": "#5c5c5c"
+      "themeName": "Gazette",
+      "colorBackground": "#F2F7FF",
+      "colorPrimary": "#000000",
+      "colorAccent": "#5c5c5c"
     },
     {
-      "name": "Espresso",
-      "background": "#21211F",
-      "primary": "#D1B59A",
-      "accent": "#4E4E4E"
+      "themeName": "Espresso",
+      "colorBackground": "#21211F",
+      "colorPrimary": "#D1B59A",
+      "colorAccent": "#4E4E4E"
     },
     {
-      "name": "Cab",
-      "background": "#F6D305",
-      "primary": "#1F1F1F",
-      "accent": "#424242"
+      "themeName": "Cab",
+      "colorBackground": "#F6D305",
+      "colorPrimary": "#1F1F1F",
+      "colorAccent": "#424242"
     },
     {
-      "name": "Cloud",
-      "background": "#f1f2f0",
-      "primary": "#35342f",
-      "accent": "#37bbe4"
+      "themeName": "Cloud",
+      "colorBackground": "#f1f2f0",
+      "colorPrimary": "#35342f",
+      "colorAccent": "#37bbe4"
     },
     {
-      "name": "Lime",
-      "background": "#263238",
-      "primary": "#AABBC3",
-      "accent": "#aeea00"
+      "themeName": "Lime",
+      "colorBackground": "#263238",
+      "colorPrimary": "#AABBC3",
+      "colorAccent": "#aeea00"
     },
     {
-      "name": "White",
-      "background": "#ffffff",
-      "primary": "#222222",
-      "accent": "#dddddd"
+      "themeName": "White",
+      "colorBackground": "#ffffff",
+      "colorPrimary": "#222222",
+      "colorAccent": "#dddddd",
+      "colorWeatherTempMax": "red",
+      "colorWeatherTempMin": "blue"
     },
     {
-      "name": "Tron",
-      "background": "#242B33",
-      "primary": "#EFFBFF",
-      "accent": "#6EE2FF"
+      "themeName": "Tron",
+      "colorBackground": "#242B33",
+      "colorPrimary": "#EFFBFF",
+      "colorAccent": "#6EE2FF"
     },
     {
-      "name": "Blues",
-      "background": "#2B2C56",
-      "primary": "#EFF1FC",
-      "accent": "#6677EB"
+      "themeName": "Blues",
+      "colorBackground": "#2B2C56",
+      "colorPrimary": "#EFF1FC",
+      "colorAccent": "#6677EB"
     },
     {
-      "name": "Passion",
-      "background": "#f5f5f5",
-      "primary": "#12005e",
-      "accent": "#8e24aa"
+      "themeName": "Passion",
+      "colorBackground": "#f5f5f5",
+      "colorPrimary": "#12005e",
+      "colorAccent": "#8e24aa"
     },
     {
-      "name": "Chalk",
-      "background": "#263238",
-      "primary": "#AABBC3",
-      "accent": "#FF869A"
+      "themeName": "Chalk",
+      "colorBackground": "#263238",
+      "colorPrimary": "#AABBC3",
+      "colorAccent": "#FF869A"
     },
     {
-      "name": "Paper",
-      "background": "#F8F6F1",
-      "primary": "#4C432E",
-      "accent": "#AA9A73"
+      "themeName": "Paper",
+      "colorBackground": "#F8F6F1",
+      "colorPrimary": "#4C432E",
+      "colorAccent": "#AA9A73"
     },
     {
-      "name": "Tyler's!",
-      "background": "#000000",
-      "primary": "#0076D0",
-      "accent": "#6EE2FF"
+      "themeName": "Tyler's!",
+      "colorBackground": "#000000",
+      "colorPrimary": "#0076D0",
+      "colorAccent": "#6EE2FF",
+      "colorWeatherTempMax": "#df5961",
+      "colorWeatherTempMin": "#15aadc"
+    },
+    {
+      "themeName": "Black",
+      "colorBackground": "#000000",
+      "colorPrimary": "#ffffff",
+      "colorAccent": "#dddddd",
+      "colorWeatherTempMax": "#fbff00",
+      "colorWeatherTempMin": "#b2fff8"
     }
   ]
 }

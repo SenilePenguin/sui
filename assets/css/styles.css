@@ -21,8 +21,8 @@ html {
 }
 
 html, body {
-    background-color: var(--color-background);
-    color: var(--color-text-pri);
+    background-color: var(--colorBackground);
+    color: var(--colorPrimary);
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -46,20 +46,26 @@ html, body {
 
 /* WEATHER */
 .weather {
-    padding: 2px;
     font-family: 'playregular', 'Comic Sans MS';
-    /*TODO: Move to themes*/
-    background-color: var(--color-text-pri);
-    color: white;
+    background-color: var(--colorBackground);
     white-space: nowrap;
+    margin-bottom: 2px;
 }
-    /*TODO: Weather needs to wrap properly on mobile. */
+
     .weather > * {
         flex: content;
     }
 
+    .weather * {
+        letter-spacing: .03em;
+    }
+
         .weather > *:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(127, 127, 127, 0.1);
+        }
+        
+        .weather > *:nth-child(odd) {
+            background: rgba(220, 220, 220, 0.5);
         }
 
 .weatherToday {
@@ -90,13 +96,21 @@ html, body {
         font-size: 2.1em;
     }
 
-.weatherOther {
-    padding: 8px 16px 2px 8px;
-    text-align: center;
+.day {
+    padding: 0.6em 0.3em;
+    width: 14.2857%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-    .weatherOther img {
-        height: 75px;
+    .day > img {
+        height: 40px;
+        margin: 0.6em 0;
+    }
+
+    .day #fullDayName {
+        display: none;
     }
 
 .conditions {
@@ -104,11 +118,11 @@ html, body {
 }
 
 #degreesHigh {
-    color: darksalmon;
+    color: var(--colorWeatherTempMax);
 }
 
 #degreesLow {
-    color: aqua;
+    color: var(--colorWeatherTempMin);
 }
 
 /* UTILITY */
@@ -156,13 +170,13 @@ h4 {
 }
 
 a {
-    color: var(--color-text-pri);
+    color: var(--colorPrimary);
     text-decoration: none;
 }
 
     a:hover {
         text-decoration: underline;
-        webkit-text-decoration-color: var(--color-text-acc);
+        webkit-text-decoration-color: var(--colorAccent);
         webkit-text-decoration-skip: true;
     }
 
@@ -175,8 +189,8 @@ a {
 input {
     background-color: transparent;
     border: 0;
-    border-bottom: thin solid var(--color-text-acc);
-    color: var(--color-text-pri);
+    border-bottom: thin solid var(--colorAccent);
+    color: var(--colorPrimary);
     font-size: 0.8em;
     height: 3.5em;
     transition: all 0.4s ease;
@@ -184,7 +198,7 @@ input {
 }
 
     input:focus {
-        color-border: var(--color-text-pri);
+        color-border: var(--colorPrimary);
         outline: none;
     }
 
@@ -198,11 +212,12 @@ input {
     overflow: hidden;
     border: 1px solid #ccc;
     border-style: none none solid;
+    margin-bottom: 6px;
 }
 
     .tab button {
-        color: var(--color-background);
-        background-color: var(--color-text-pri);
+        color: var(--colorBackground);
+        background-color: var(--colorPrimary);
         float: left;
         border: 2px solid;
         border-radius: 5px;
@@ -213,11 +228,11 @@ input {
     }
 
         .tab button:hover {
-            background-color: var(--color-text-pri);
+            background-color: var(--colorPrimary);
         }
 
         .tab button.active {
-            background-color: var(--color-text-acc);
+            background-color: var(--colorAccent);
         }
 
 .tabcontent {
@@ -314,12 +329,12 @@ table {
 
 /* SECTIONS */
 #header {
-    border-bottom: 0px solid var(--color-text-acc);
+    border-bottom: 0px solid var(--colorAccent);
     z-index: 1;
 }
 
 #apps_loop {
-    border-bottom: 0px solid var(--color-text-acc);
+    border-bottom: 0px solid var(--colorAccent);
     display: grid;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -362,7 +377,7 @@ table {
     }
 
     .apps_text span {
-        color: var(--color-text-acc);
+        color: var(--colorAccent);
         font-size: 0.8em;
         text-transform: uppercase;
     }
@@ -383,7 +398,7 @@ table {
 }
 
     #links_item h4 {
-        color: var(--color-text-acc);
+        color: var(--colorAccent);
     }
 
     #links_item a {
@@ -460,17 +475,17 @@ table {
 
 #modal_init a {
     bottom: 1vh;
-    color: var(--color-text-acc);
+    color: var(--colorAccent);
     left: 1vw;
     position: fixed;
 }
 
     #modal_init a:hover {
-        color: var(--color-text-pri);
+        color: var(--colorPrimary);
     }
 
 #modal-theme {
-    border-bottom: 0px solid var(--color-text-acc);
+    border-bottom: 0px solid var(--colorAccent);
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 2em;
@@ -481,6 +496,26 @@ table {
 }
 
 /* MEDIA QUERIES */
+@media only screen and (min-width: 1109px) {
+    .day .temps {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        flex-grow: 1;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 90%;
+    }
+
+    .day #fullDayName {
+        display: inline;
+    }
+
+    .day #abrDayName {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 1260px) {
     #container {
         align-items: stretch;
@@ -510,6 +545,13 @@ table {
         margin-right: auto;
         margin-top: 5vh;
         width: 90%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .flex {
+        flex-wrap: wrap;
     }
 }
 

@@ -30,7 +30,7 @@
                     <script type="text/handlebars-template" id="themes-template">
                     <div id="themes_loop">
                         {{#themes}}
-                            <button data-theme="{{name}}" class="theme-button">{{name}}</button>
+                            <button data-theme="{{themeName}}" class="theme-button">{{themeName}}</button>
                         {{/themes}}
                     </div>
 
@@ -105,7 +105,6 @@
         <div id="TabLinks" class="tabcontent">
             <section id="links">
                 <script type="text/handlebars-template" id="links-template">
-                    <h3>Bookmarks</h3>
                     <div id="links_loop">
                         {{#bookmarks}}
                             <div id="links_item">
@@ -121,14 +120,6 @@
         </div>
 
         <div id="TabWeather" class="tabcontent">
-            <a class="weatherwidget-io" href="https://forecast7.com/en/31d21n82d35/waycross/?unit=us" data-label_1="WAYCROSS" data-font="Play" data-icons="Climacons Animated" data-theme="original">TEST2</a>
-            <script>
-                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
-            </script>
-
-
-
-
             <div id="weatherRow10" class="flex weather">
                 <div class="weatherToday">
                     <div>
@@ -144,113 +135,88 @@
                         <div id="description">overcast clouds</div>
                     </div>
                 </div>
-                <!--TODO: Dynamically generate these. Also need to research server-side caching of the API calls and querying on that end. --> 
-                <div class="weatherOther">
-                    <div id="locationName">Wednesday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
+
+                <template class="day">
+                    <!-- TODO: Make this a template and propogate via JS -->
+                    <!--TODO: Dynamically generate these. Also need to research server-side caching of the API calls and querying on that end. -->
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template -->
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
+                    </div>
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
                         <div id="degreesHigh">93°F</div>
                         <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
+                    </div>
+                </template>
+                <div class="day">
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
+                    </div>
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
+                        <div id="degreesHigh">93°F</div>
+                        <div id="degreesLow">72°F</div>
                     </div>
                 </div>
-                <div class="weatherOther">
-                    <div id="locationName">Thursday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
+                <div class="day">
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
+                    </div>
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
                         <div id="degreesHigh">93°F</div>
                         <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
                     </div>
                 </div>
-                <div class="weatherOther">
-                    <div id="locationName">Friday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
+                <div class="day">
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
+                    </div>
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
                         <div id="degreesHigh">93°F</div>
                         <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
                     </div>
                 </div>
-                <div class="weatherOther">
-                    <div id="locationName">Wednesday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
+                <div class="day">
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
+                    </div>
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
                         <div id="degreesHigh">93°F</div>
                         <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
                     </div>
                 </div>
-                <div class="weatherOther">
-                    <div id="locationName">Wednesday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
+                <div class="day">
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
+                    </div>
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
                         <div id="degreesHigh">93°F</div>
                         <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
                     </div>
                 </div>
-                <div class="weatherOther">
-                    <div id="locationName">Wednesday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
+                <div class="day">
+                    <div class="dayName">
+                        <span id="fullDayName">Wednesday</span>
+                        <span id="abrDayName">Wed</span>
                     </div>
-                </div>
-                <div class="weatherOther">
-                    <div id="locationName">Wednesday</div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="conditions flex">
+                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <div class="temps">
                         <div id="degreesHigh">93°F</div>
                         <div id="degreesLow">72°F</div>
-                        <!--<div id="description">overcast clouds</div>-->
                     </div>
                 </div>
             </div>
-
-
-            <!--<div id="weatherRow0" class="grid-weather">
-                <div class="currentWeather">
-                    <h3 id="locationName">WAYCROSS</h3>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/37.svg">
-                    <div class="currentConditions">
-                        <div id="currentTemp">91°F</div>
-                        <div id="currentDesc">broken clouds</div>
-                    </div>
-                </div>
-                <div>
-                    "AA"
-                </div>
-                <div>
-                    BBB
-                </div>
-            </div>
-
-
-
-
-
-            <div id="weatherRow1" class="grid-forecast">
-                <div id="weatherPanel">
-                    <h3 id="day">Someday</h3>
-                    <div>
-                        <img id="icon" alt="icon" src="//www.wunderground.com/static/i/c/v4/44.svg">
-                    </div>
-                    <div>
-                        <div id="precip">
-                            <span id="precipType">Rain</span><span>:</span>
-                            <span id="precipChance">#</span><span>% chance</span>
-                            <span>(</span><span id="qpf">#.##</span>
-                            <span id="precipUnit">in)</span>
-                        </div>
-                        <div>
-                            <div id="narrative">Description. Lots of something at winds of fast.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </main>
 
