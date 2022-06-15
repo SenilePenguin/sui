@@ -1,14 +1,12 @@
 // https://docs.google.com/document/d/1eKCnKXI9xnoMGRRzOL1xPCBihNV2rOet08qpE_gArAY/edit
 
+let container = document.getElementById("weatherRow");
+let templateToday = document.getElementById("templateWeatherToday");
+let templateOther = document.getElementById("templateWeatherOtherDay");
+let degrees = "F";
 let weatherData;
 fetchWeather();
-
-const SITE = {
-    Camden: '31548',
-    Golden_Isles: '31525',
-    Waycross: '31503',
-    Jesup: '31545'
-};
+addWeatherForecast()
 
 async function fetchWeather() {
     // TODO: Have the local file auto-update on the server (to hide API keys)
@@ -18,6 +16,12 @@ async function fetchWeather() {
             console.log(data);
             weatherData = data;
         });
+}
+
+async function validateWeather() {
+    if (weatherData == null) {
+        await fetchWeather();
+    }
 }
 
 function printWeatherJson() {
@@ -42,60 +46,32 @@ function printWeatherByDay(day) {
     console.log(`Icon: ${dp.iconCode[dp12Hours]}`);
 }
 
-function populateWeather(site) {
-    let parentElement = document.getElementById("weatherRow1");
-    let dp = weatherData.daypart[0];
-    let original = parentElement.querySelector("#weatherPanel")
 
-    for (var i = 0; i < dp.daypartName.length; i++) {
-        if (dp.daypartName[i] == null) {
-            continue;
+async function addWeatherForecast(weatherRow) {
+    await validateWeather();
+
+    for (var i = 0; i < weatherData.dayOfWeek.length; i++) {
+        let panel;// = templateOther.content.firstElementChild.cloneNode(true);
+
+        if (i == 0) {
+            panel = templateToday.content.firstElementChild.cloneNode(true);
+            panel.setAttribute("class", "today");
+        } else {
+            panel = templateOther.content.firstElementChild.cloneNode(true);
         }
 
-        var clone = original.cloneNode(true);
-        var panelID = `weatherPanel_${i}`;
+        panel.setAttribute("id", `waycross_${weatherData.dayOfWeek[i]}`);
 
-        clone.setAttribute("id", panelID);
+        panel.querySelector(`#fullDayName`).innerText = weatherData.dayOfWeek[i];
+        panel.querySelector(`#abrDayName`).innerText = weatherData.dayOfWeek[i].substring(0, 3);
+        panel.querySelector(`#icon`).src = `//www.wunderground.com/static/i/c/v4/26.svg`
+        panel.querySelector(`#degreesHigh`).innerText = `${weatherData.temperatureMax[i]}\u00B0${degrees}` ?? "NULL";
+        panel.querySelector(`#degreesLow`).innerText = `${weatherData.temperatureMin[i]}\u00B0${degrees}` ?? "NULL";
+        //clone.querySelector(`#precipChance`).innerText = dp.precipChance[i];
+        //clone.querySelector(`#qpf`).innerText = dp.qpf[i];
+        //clone.querySelector(`#precipType`).innerText = dp.precipType[i];
+        //clone.querySelector(`#narrative`).innerText = dp.narrative[i];
 
-        clone.querySelector(`#day`).innerText = dp.daypartName[i];
-        clone.querySelector(`#icon`).src = `//www.wunderground.com/static/i/c/v4/${dp.iconCode[i]}.svg`
-        clone.querySelector(`#precipChance`).innerText = dp.precipChance[i];
-        clone.querySelector(`#qpf`).innerText = dp.qpf[i];
-        clone.querySelector(`#precipType`).innerText = dp.precipType[i];
-        clone.querySelector(`#narrative`).innerText = dp.narrative[i];
-
-        // clone.getElementById("dayOfWeek").innerText = dp.dayOfWeek[i];
-
-        parentElement.appendChild(clone);
+        container.appendChild(panel);
     }
-
-    original.remove();
-
-    // addWeatherPanel(parentElement);
-}
-
-function addWeatherPanel(elementParent) {
-    var original = document.getElementById("weatherPanel");
-    var clone = original.cloneNode(true);
-    elementParent.appendChild(clone);
-}
-
-function getWeatherWidget(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (!d.getElementById(id)) {
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://weatherwidget.io/js/widget.min.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }
-}
-
-let iconIndex = 0;
-function cycleIcon() {
-    if (iconIndex >= 44) {
-        iconIndex = 0;
-    }
-    var image = document.getElementById("weatherImg");
-    image.src = `//www.wunderground.com/static/i/c/v4/${iconIndex}.svg`;
-    iconIndex++;
 }

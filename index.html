@@ -120,100 +120,113 @@
         </div>
 
         <div id="TabWeather" class="tabcontent">
-            <div id="weatherRow10" class="flex weather">
-                <div class="weatherToday">
-                    <div>
-                        <div id="locationName">WAYCROSS</div>
-                        <div class="conditions flex">
-                            <div id="degreesHigh">93°F</div>
-                            <div id="degreesLow">72°F</div>
+            <div id="weatherRow" class="flex weather">
+                <template id="templateWeatherOtherDay">
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template -->
+                    <!--TODO: Dynamically generate these. Also need to research server-side caching of the API calls and querying on that end. -->
+                    <div class="otherDay">
+                        <div class="dayName">
+                            <span id="fullDayName">Monday</span>
+                            <span id="abrDayName">Mon</span>
+                        </div>
+                        <img id="icon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                        <div class="temps">
+                            <div id="degreesHigh">100°F</div>
+                            <div id="degreesLow">70°F</div>
                         </div>
                     </div>
-                    <img id="weatherIcon" src="//www.wunderground.com/static/i/c/v4/37.svg">
-                    <div class="conditionsNow">
-                        <div id="degrees">91°F</div>
-                        <div id="description">overcast clouds</div>
-                    </div>
-                </div>
+                </template>
 
-                <template class="day">
-                    <!-- TODO: Make this a template and propogate via JS -->
-                    <!--TODO: Dynamically generate these. Also need to research server-side caching of the API calls and querying on that end. -->
-                    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template -->
-                    <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
-                    </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
+                <template id="templateWeatherToday">
+                    <div class="today">
+                        <div>
+                            <span id="fullDayName">Monday</span>
+                            <span id="abrDayName">Mon</span>
+                            <!--<div id="locationName">WAYCROSS</div>-->
+                            <div class="conditions flex">
+                                <div id="degreesHigh">93°F</div>
+                                <div id="degreesLow">72°F</div>
+                            </div>
+                        </div>
+                        <img id="icon" src="//www.wunderground.com/static/i/c/v4/37.svg">
+                        <div>
+                            <div id="degrees">91°F</div>
+                            <div id="description">overcast clouds</div>
+                        </div>
                     </div>
                 </template>
-                <div class="day">
-                    <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
+            </div>
+
+            BREAK
+            <div id="weatherRow" class="weather">
+                <!-- TODO: Figure out why this is stretching!! -->
+                <div class="today-grid">
+                    <div class="flex">
+                        <div>
+                            <span id="fullDayName">Monday</span>
+                            <span id="abrDayName">Mon</span>
+                            <div class="conditions flex">
+                                <div id="degreesHigh">93°F</div>
+                                <div id="degreesLow">72°F</div>
+                            </div>
+                        </div>
+                        <img id="icon" src="//www.wunderground.com/static/i/c/v4/37.svg">
+                        <div>
+                            <div id="degrees">91°F</div>
+                            <div id="description">overcast clouds</div>
+                        </div>
                     </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+
+                    <p>
+                        I need some text to put here to act as a description or something, which will make the panel wrap to be taller.
+
+                        Woot.
+                    </p>
+                </div>
+
+
+                <div class="otherDay">
+                    <div class="dayName">
+                        <span id="fullDayName">Monday</span>
+                        <span id="abrDayName">Mon</span>
+                    </div>
+                    <img id="icon" src="//www.wunderground.com/static/i/c/v4/23.svg">
                     <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
+                        <div id="degreesHigh">100°F</div>
+                        <div id="degreesLow">70°F</div>
                     </div>
                 </div>
-                <div class="day">
+                <div class="otherDay">
                     <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
+                        <span id="fullDayName">Monday</span>
+                        <span id="abrDayName">Mon</span>
                     </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <img id="icon" src="//www.wunderground.com/static/i/c/v4/23.svg">
                     <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
+                        <div id="degreesHigh">100°F</div>
+                        <div id="degreesLow">70°F</div>
                     </div>
                 </div>
-                <div class="day">
+                <div class="otherDay">
                     <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
+                        <span id="fullDayName">Monday</span>
+                        <span id="abrDayName">Mon</span>
                     </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <img id="icon" src="//www.wunderground.com/static/i/c/v4/23.svg">
                     <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
+                        <div id="degreesHigh">100°F</div>
+                        <div id="degreesLow">70°F</div>
                     </div>
                 </div>
-                <div class="day">
+                <div class="otherDay">
                     <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
+                        <span id="fullDayName">Monday</span>
+                        <span id="abrDayName">Mon</span>
                     </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
+                    <img id="icon" src="//www.wunderground.com/static/i/c/v4/23.svg">
                     <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
-                    </div>
-                </div>
-                <div class="day">
-                    <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
-                    </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
-                    </div>
-                </div>
-                <div class="day">
-                    <div class="dayName">
-                        <span id="fullDayName">Wednesday</span>
-                        <span id="abrDayName">Wed</span>
-                    </div>
-                    <img id="dayIcon" src="//www.wunderground.com/static/i/c/v4/23.svg">
-                    <div class="temps">
-                        <div id="degreesHigh">93°F</div>
-                        <div id="degreesLow">72°F</div>
+                        <div id="degreesHigh">100°F</div>
+                        <div id="degreesLow">70°F</div>
                     </div>
                 </div>
             </div>

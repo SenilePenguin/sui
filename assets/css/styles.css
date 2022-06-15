@@ -60,22 +60,30 @@ html, body {
         letter-spacing: .03em;
     }
 
-        .weather > *:nth-child(even) {
-            background: rgba(127, 127, 127, 0.1);
-        }
-        
-        .weather > *:nth-child(odd) {
-            background: rgba(220, 220, 220, 0.5);
-        }
+    .weather > *:nth-child(even) {
+        background: rgba(127, 127, 127, 0.1);
+    }
 
-.weatherToday {
-    display: flex;
-    height: 125px;
-    align-items: center;
-    justify-content: space-evenly;
+    .weather > *:nth-child(odd) {
+        background: rgba(220, 220, 220, 0.5);
+    }
+
+.today-grid {
+    display: grid;
+    grid-template-columns: 125px 105px 125px;
+    align-items: stretch;
+    justify-items: stretch;
 }
 
-    .weatherToday #locationName {
+    .today-grid :last-child {
+        grid-column: 1 / -1;
+    }
+
+    .today-grid > * {
+        padding: 4px 12px;
+    }
+
+    .today-grid #locationName {
         font-family: 'playregular', 'Comic Sans MS';
         text-transform: uppercase;
         font-size: 20px;
@@ -83,33 +91,65 @@ html, body {
         margin-bottom: 6px;
     }
 
-    .weatherToday > * {
-        padding: 4px 12px;
-    }
 
-    .weatherToday img {
+    .today-grid img {
         height: 75%;
     }
 
-    .weatherToday #degrees {
+    .today-grid p {
+        width: 355px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .today-grid #degrees {
         text-align: center;
         font-size: 2.1em;
     }
 
-.day {
+.today {
+    display: flex;
+    height: 125px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+    .today #locationName {
+        font-family: 'playregular', 'Comic Sans MS';
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 6px;
+    }
+
+    .today > * {
+        padding: 4px 12px;
+    }
+
+    .today img {
+        height: 75%;
+    }
+
+    .today #degrees {
+        text-align: center;
+        font-size: 2.1em;
+    }
+
+.otherDay {
     padding: 0.6em 0.3em;
+    min-width: 40px;
     width: 14.2857%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-    .day > img {
+    .otherDay > img {
         height: 40px;
         margin: 0.6em 0;
     }
 
-    .day #fullDayName {
+    .otherDay #fullDayName {
         display: none;
     }
 
@@ -497,23 +537,27 @@ table {
 
 /* MEDIA QUERIES */
 @media only screen and (min-width: 1109px) {
-    .day .temps {
-        display: flex;
-        flex-direction: column;
-        text-align: right;
-        flex-grow: 1;
-        justify-content: space-between;
-        flex-direction: row;
-        width: 90%;
+    .otherDay {
+        min-width: 86px;
     }
 
-    .day #fullDayName {
-        display: inline;
-    }
+        .otherDay .temps {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            flex-grow: 1;
+            justify-content: space-between;
+            flex-direction: row;
+            width: 90%;
+        }
 
-    .day #abrDayName {
-        display: none;
-    }
+        .otherDay #fullDayName {
+            display: inline;
+        }
+
+        .otherDay #abrDayName {
+            display: none;
+        }
 }
 
 @media screen and (max-width: 1260px) {
@@ -591,6 +635,7 @@ table {
     #apps_loop {
         grid-column-gap: 0px;
         grid-row-gap: 0px;
+        /* Fix wrapping for small screens (mobile). Maybe convert to a flexbox? */
         grid-template-columns: 1fr 1fr;
         width: 100vw;
     }
@@ -613,6 +658,10 @@ table {
         grid-row-gap: 0px;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
+    }
+
+    .today {
+        flex-basis: 100%;
     }
 }
 
