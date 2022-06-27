@@ -1,6 +1,6 @@
 FROM busybox
 
-LABEL maintainer="Jeroen Pardon"
+LABEL maintainer="SenilePenguin"
 
 WORKDIR /opt/html
 

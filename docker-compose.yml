@@ -7,12 +7,12 @@ services:
     build:
       context: ./
     environment:
-      - VIRTUAL_HOST=test.laserr.net
+      - VIRTUAL_HOST=test.example.com
     networks:
       - nginx-proxy
       - public
     ports:
-      - 4000:80
+      - 4080:80
     volumes:
       - ./:/opt/html
 

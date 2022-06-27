@@ -36,7 +36,6 @@ const setValueFromLocalStorage = property => {
         console.log(`Theme data found: ${property}=${value} `);
         setValue(property, value);
     }
-
 }
 
 const setTheme = options => {
@@ -52,7 +51,7 @@ const setTheme = options => {
 
 let themeData;
 async function fetchThemes() {
-    await fetch("themes.json")
+    await fetch("/data/themes.json")
         .then(resp => resp.json())
         .then(data => {
             themeData = data;

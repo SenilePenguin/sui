@@ -1,6 +1,7 @@
 // https://docs.google.com/document/d/1eKCnKXI9xnoMGRRzOL1xPCBihNV2rOet08qpE_gArAY/edit
 
-let container = document.getElementById("weatherRow");
+let container = document.getElementById("TabWeather");
+let templateRow = document.getElementById("templateWeatherRow");
 let templateToday = document.getElementById("templateWeatherToday");
 let templateOther = document.getElementById("templateWeatherOtherDay");
 let degrees = "F";
@@ -10,7 +11,7 @@ addWeatherForecast()
 
 async function fetchWeather() {
     // TODO: Have the local file auto-update on the server (to hide API keys)
-    await fetch("_weather.json")
+    await fetch("/data/_weather.json")
         .then(resp => resp.json())
         .then(data => {
             console.log(data);
@@ -47,8 +48,10 @@ function printWeatherByDay(day) {
 }
 
 
-async function addWeatherForecast(weatherRow) {
+async function addWeatherForecast() {
     await validateWeather();
+
+    let row = templateRow.content.firstElementChild.cloneNode(true);
 
     for (var i = 0; i < weatherData.dayOfWeek.length; i++) {
         let panel;// = templateOther.content.firstElementChild.cloneNode(true);
@@ -72,6 +75,23 @@ async function addWeatherForecast(weatherRow) {
         //clone.querySelector(`#precipType`).innerText = dp.precipType[i];
         //clone.querySelector(`#narrative`).innerText = dp.narrative[i];
 
-        container.appendChild(panel);
+        row.querySelector("#weatherRow").appendChild(panel);
     }
+
+    let button = row.querySelector(".collapsible");
+    button.innerText = "INSERT_PLACE_NAME_HERE";
+
+    button.addEventListener("click", function () {
+        button.classList.toggle("expanded");
+        var content = button.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = "500px";
+        }
+    });
+
+    container.appendChild(row);
+
+    button.click();
 }

@@ -67,7 +67,7 @@ html, body {
     .weather > *:nth-child(odd) {
         background: rgba(220, 220, 220, 0.5);
     }
-
+/*
 .today-grid {
     display: grid;
     grid-template-columns: 125px 105px 125px;
@@ -106,12 +106,13 @@ html, body {
         text-align: center;
         font-size: 2.1em;
     }
-
+*/
 .today {
     display: flex;
-    height: 125px;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 4px, 12px;
 }
 
     .today #locationName {
@@ -123,16 +124,26 @@ html, body {
     }
 
     .today > * {
-        padding: 4px 12px;
+        padding: 0px 12px;
     }
 
     .today img {
-        height: 75%;
+        height: 110px;
+    }
+
+    .today p {
+        white-space: normal;
+        text-align: center;
+        margin: 0px 8px 8px;
     }
 
     .today #degrees {
         text-align: center;
         font-size: 2.1em;
+    }
+
+    .today #degreesHigh {
+        padding: 0px 10px 0px 0px;
     }
 
 .otherDay {
@@ -164,6 +175,46 @@ html, body {
 #degreesLow {
     color: var(--colorWeatherTempMin);
 }
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    /*background-color: #eee;
+    color: #444;*/
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .expanded, .collapsible:hover {
+        background-color: #ccc;
+    }
+
+    .collapsible:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: white;
+        float: right;
+        margin-left: 5px;
+    }
+
+.expanded:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.collapseContent {
+    /* TODO: Set this via themer. */
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
 
 /* UTILITY */
 .outline {
@@ -536,10 +587,18 @@ table {
 }
 
 /* MEDIA QUERIES */
-@media only screen and (min-width: 1109px) {
+@media only screen and (min-width: 550px) {
+    #degreesHigh {
+        padding: 0px 10px 0px 0px;
+    }
+
     .otherDay {
         min-width: 86px;
     }
+
+        .otherDay > img {
+            height: 75px;
+        }
 
         .otherDay .temps {
             display: flex;
@@ -590,12 +649,13 @@ table {
         margin-top: 5vh;
         width: 90%;
     }
-}
-
-@media screen and (max-width: 800px) {
 
     .flex {
         flex-wrap: wrap;
+    }
+
+    .collapsible {
+        text-align: center;
     }
 }
 

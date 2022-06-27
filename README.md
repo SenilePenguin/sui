@@ -27,7 +27,7 @@ To run at a different port open edit docker-compose.yml:
  - refreshs source code every 5 minutes from master branch you provided - convenience feature for lacy devs
  - `git clone` this repository
  - build image `docker build -f DockerfilePullFromGit -t sui:latest .`
- - run image with `docker run -e GITURL='https://x:ghp_x@github.com/jeroenpardon/sui.git' -p 8081:80 sui:latest`
+ - run image with `docker run -e GITURL='https://x:ghp_x@github.com/SenilePenguin/sui.git' -p 8081:80 sui:latest`
  - can be run also with a private repository by setting username:api-key@ in the url (see above example). Otherwise remove this part of the url.
  
 
@@ -98,10 +98,4 @@ Please note:
 
 
 #### Color themes
-These can be added or customized in the themer.js file. When changing the name of a theme or adding one, make sure to edit this section in index.html accordingly:
-
-```
-    <section  class="themes">
-```
-
-I might add a simpler way to edit themes at some point, but adding the current ones should be pretty straight forward.
+These can be added or customized in the themer.js file. When changing themes, no other files need to be touched.
